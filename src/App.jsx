@@ -1,23 +1,30 @@
 import { useState } from 'react';
 // import './App.css'
 import User from './User';
+import Student from './Student';
 
 function App() {
-  const [count,setCount] = useState(0);
-  
+  const [name,setName] = useState();
+
+  // let userObj = {
+  //   "name":"Yash",
+  //   "age":20,
+  //   "email":"yash@test.com"
+  // }
+  // let userObj2 = {
+  //   "name":"Rahul",
+  //   "age":23,
+  //   "email":"rahul@test.com"
+  // }
+
+
   return (
     <>
-    <h1>{count}</h1>
-    <button onClick={()=>setCount(count+1)}>Click</button>
-      {
-        count === 0?<h1>Condition 0</h1>
-        :count === 1?<h1>Condition 1</h1>
-        :count === 2?<h1>Condition 2</h1>
-        :count === 3?<h1>Condition 3</h1>
-        :count === 4?<h1>Condition 4</h1>
-        :count === 5?<h1>Condition 5</h1>
-        :null
-      }
+      {/* <User dets={userObj} /> 
+      <User dets={userObj2} />  */}
+
+      <button onClick={()=>setName("Yash")}>Click</button>
+      {name && <Student name={name}/>}
     </>
   )
 }
