@@ -1,17 +1,16 @@
 import { useState } from 'react';
-import './App.css'
-import Counter from './Counter';
+// import './App.css'
+import User from './User';
 
 function App() {
-  const [fruit,setFruit] = useState("Apple");
-  function HandleFruit(){
-    setFruit("Banana");
-  }
+  const [display,setDisplay] = useState(true);
+  
   return (
     <>
-      <h1>{fruit}</h1>
-      <button onClick={()=>{HandleFruit()}}>Click Me</button>
-      <Counter/>
+    <button onClick={()=>setDisplay(!display)}>Toggle</button>
+      {
+        display?<User/>:null
+      }
     </>
   )
 }
