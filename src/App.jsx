@@ -1,10 +1,12 @@
 import React from 'react'
-import Skills from './Skills'
+import Dropdown from './Dropdown'
+import Radio from './Radio';
 
 const App = () => {
   return (
     <div>
-      <Skills />
+      {/* <Radio/> */}
+      <Dropdown />
     </div>
   )
 }
