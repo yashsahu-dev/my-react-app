@@ -1,48 +1,23 @@
-import React from "react";
-import User from "./User";
+import React from 'react'
+import Clock from './Clock'
+import {useState} from 'react'
+
 
 const App = () => {
-  const UserData = [
-    {
-      ID: 1,
-      Name: "yash",
-      Email: "sahuyash359@gmail.com",
-      Age: 23,
-    },
-    {
-      ID: 2,
-      Name: "rahul",
-      Email: "rahul@gmail.com",
-      Age: 19,
-    },
-    {
-      ID: 3,
-      Name: "amit",
-      Email: "amit@gmail.com",
-      Age: 67,
-    },
-    {
-      ID: 4,
-      Name: "alok",
-      Email: "alok@gmail.com",
-      Age: 85,
-    },
-    {
-      ID: 5,
-      Name: "manas",
-      Email: "manas@gmail.com",
-      Age: 45,
-    },
-  ];
+  const [color, setColor] = useState("Green");
   return (
     <div>
-      <h1>Loop in JSX with map</h1>
+      <h1>React JS Task</h1>
+      <select name=""  onChange={(e)=>setColor(e.target.value)}>
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="red">Red</option>
+        <option value="orange">Orange</option>
+      </select>
+      <Clock color={color}/>
 
-      {UserData.map((user) => (
-        <User data={user} />
-      ))}
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
