@@ -1,4 +1,5 @@
 import React from "react";
+import User from "./User";
 
 const App = () => {
   const UserData = [
@@ -26,26 +27,20 @@ const App = () => {
       Email: "alok@gmail.com",
       Age: 85,
     },
+    {
+      ID: 5,
+      Name: "manas",
+      Email: "manas@gmail.com",
+      Age: 45,
+    },
   ];
   return (
     <div>
       <h1>Loop in JSX with map</h1>
-      <table border="1">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Age</th>
-        </tr>
-        {UserData.map((user)=>(
-          <tr key={user.ID}>
-            <td>{user.ID}</td>
-            <td>{user.Name}</td>
-            <td>{user.Email}</td>
-            <td>{user.Age}</td>
-          </tr>
-        ))}
-      </table>
+
+      {UserData.map((user) => (
+        <User data={user} />
+      ))}
     </div>
   );
 };
