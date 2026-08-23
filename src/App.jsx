@@ -1,23 +1,82 @@
-import React from 'react'
-import Clock from './Clock'
-import {useState} from 'react'
-
+import React from "react";
+import College from "./College";
 
 const App = () => {
-  const [color, setColor] = useState("Green");
+  const collegeData = [
+    {
+      name: "IET",
+      city: "Angul",
+      website: "www.iet.com",
+      students: [
+        {
+          name: "Yash",
+          age: "21",
+          email: "yash@test.com",
+        },
+        {
+          name: "Rahul",
+          age: "24",
+          email: "rahul@test.com",
+        },
+        {
+          name: "Alok",
+          age: "67",
+          email: "alok@test.com",
+        },
+      ],
+    },
+    {
+      name: "NIT",
+      city: "Banarpal",
+      website: "www.nit.com",
+      students: [
+        {
+          name: "Yash",
+          age: "21",
+          email: "yash@test.com",
+        },
+        {
+          name: "Rahul",
+          age: "24",
+          email: "rahul@test.com",
+        },
+        {
+          name: "Alok",
+          age: "67",
+          email: "alok@test.com",
+        },
+      ],
+    },
+    {
+      name: "IITM",
+      city: "Kandasar",
+      website: "www.iitm.com",
+      students: [
+        {
+          name: "Yash",
+          age: "21",
+          email: "yash@test.com",
+        },
+        {
+          name: "Rahul",
+          age: "24",
+          email: "rahul@test.com",
+        },
+        {
+          name: "Alok",
+          age: "67",
+          email: "alok@test.com",
+        },
+      ],
+    },
+  ];
   return (
     <div>
-      <h1>React JS Task</h1>
-      <select name=""  onChange={(e)=>setColor(e.target.value)}>
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-        <option value="red">Red</option>
-        <option value="orange">Orange</option>
-      </select>
-      <Clock color={color}/>
-
+      {collegeData.map((college, index) => (
+        <College college={college} key={index} />
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
