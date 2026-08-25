@@ -1,22 +1,16 @@
 import React from 'react'
-import { useRef } from 'react'
-const App = () => {
+import User from './User'
 
-  const inputRef =  useRef(null)
-  const h1Ref =  useRef(null)
-  const inpHandler=()=>{
-    inputRef.current.focus();
-    inputRef.current.style.color = "blue"
-  }
-  const h1Handler=()=>{
-    h1Ref.current.style.color = "red"
+const App = () => {
+  const displayName = (name)=>{
+    alert('hello,'+name)
   }
   return (
     <div>
-      <input ref={inputRef} type="text" />
-      <button onClick={inpHandler}>Click</button>
-      <h1 ref={h1Ref}>Hello</h1>
-      <button onClick={h1Handler}>Click</button>
+      <User displayname={displayName} name='yash' />
+      <User displayname={displayName} name='Rahul' />
+      <User displayname={displayName} name='Alok' />
+      <User displayname={displayName} name='Manas' />
     </div>
   )
 }
