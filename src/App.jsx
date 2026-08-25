@@ -1,82 +1,22 @@
-import React from "react";
-import College from "./College";
+import React, {  useState } from 'react'
+import Counter from './Counter';
 
 const App = () => {
-  const collegeData = [
-    {
-      name: "IET",
-      city: "Angul",
-      website: "www.iet.com",
-      students: [
-        {
-          name: "Yash",
-          age: "21",
-          email: "yash@test.com",
-        },
-        {
-          name: "Rahul",
-          age: "24",
-          email: "rahul@test.com",
-        },
-        {
-          name: "Alok",
-          age: "67",
-          email: "alok@test.com",
-        },
-      ],
-    },
-    {
-      name: "NIT",
-      city: "Banarpal",
-      website: "www.nit.com",
-      students: [
-        {
-          name: "Yash",
-          age: "21",
-          email: "yash@test.com",
-        },
-        {
-          name: "Rahul",
-          age: "24",
-          email: "rahul@test.com",
-        },
-        {
-          name: "Alok",
-          age: "67",
-          email: "alok@test.com",
-        },
-      ],
-    },
-    {
-      name: "IITM",
-      city: "Kandasar",
-      website: "www.iitm.com",
-      students: [
-        {
-          name: "Yash",
-          age: "21",
-          email: "yash@test.com",
-        },
-        {
-          name: "Rahul",
-          age: "24",
-          email: "rahul@test.com",
-        },
-        {
-          name: "Alok",
-          age: "67",
-          email: "alok@test.com",
-        },
-      ],
-    },
-  ];
+
+  const [Count, setCount] = useState(0);
+  const [Data, setData] = useState(0);
+
+  
+
+  
+
   return (
     <div>
-      {collegeData.map((college, index) => (
-        <College college={college} key={index} />
-      ))}
+      <Counter count={Count} data={Data} />
+      <button onClick={()=>setCount(Count+1)}>Counter</button>
+      <button onClick={()=>setData(Data+1)}>Data</button>
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
