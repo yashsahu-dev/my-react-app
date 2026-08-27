@@ -1,18 +1,28 @@
-import React, { useRef } from 'react'
-import Userinput from './Userinput';
+import React from "react";
+import { useFormStatus } from "react-dom";
 
 const App = () => {
-  const inpRef = useRef();
-  const InpHandler=()=>{
-    inpRef.current.focus();
-    inpRef.current.value = 1000;
-  }
-  return (
-    <div>
-      <Userinput ref={inpRef} />
-      <button onClick={InpHandler}>Click</button>
-    </div>
-  )
-}
+  const handleForm = async () => {
+    await new Promise((res) => setTimeout(res, 5000));
+    console.log("Submitted!!!");
+  };
+  const Form = () => {
+    const {pending} = useFormStatus();
+    console.log(pending)
+    return (
+      <div>
+          <input type="text" placeholder="Enter username" />
+          <input type="text" placeholder="Enter password" />
+          <button type="submit" disabled={pending}>{pending?"submitting...":"submit"}</button>
+        
+      </div>
+    );
+  };
+  return <div>
+    <form action={handleForm}>
+      <Form/>
+    </form>
+  </div>;
+};
 
-export default App
+export default App;
