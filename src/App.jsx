@@ -1,16 +1,16 @@
-import React from 'react'
-import User from './User'
+import React, { useRef } from 'react'
+import Userinput from './Userinput';
 
 const App = () => {
-  const displayName = (name)=>{
-    alert('hello,'+name)
+  const inpRef = useRef();
+  const InpHandler=()=>{
+    inpRef.current.focus();
+    inpRef.current.value = 1000;
   }
   return (
     <div>
-      <User displayname={displayName} name='yash' />
-      <User displayname={displayName} name='Rahul' />
-      <User displayname={displayName} name='Alok' />
-      <User displayname={displayName} name='Manas' />
+      <Userinput ref={inpRef} />
+      <button onClick={InpHandler}>Click</button>
     </div>
   )
 }
