@@ -1,13 +1,29 @@
 import React, { useState } from 'react'
-import AddUser from './AddUser';
-import DisplayUser from './DisplayUser';
 
 const App = () => {
-  const [user, setUser] = useState('');
+  const [data, setData] = useState({
+    name:"yash",
+    address:{
+      city:"Angul",
+      country:"India"
+    }
+  });
+
+  const onName=(val)=>{
+    data.name = val;
+    setData({...data})
+  }
+  const onCity=(val)=>{
+    setData({...data,address:{...data.address,city:val}})
+    console.log(data)
+  }
   return (
     <div>
-      <AddUser  setUser={setUser}/>
-      <DisplayUser user={user}/>
+      <input type="text" onChange={(e)=>onName(e.target.value)}/>
+      <input type="text" onChange={(e)=>onCity(e.target.value)}/>
+      <h2>Name:{data.name}</h2>
+      <h2>City:{data.address.city}</h2>
+      <h2>Country:{data.address.country}</h2>
     </div>
   )
 }
