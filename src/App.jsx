@@ -1,47 +1,23 @@
-import React, { useId } from 'react'
+import React, { useState } from "react";
+import College from "./College";
+import { SubjectContext } from "./Context";
 
 const App = () => {
+  const [subject,setSubject] = useState("")
   return (
-    <div>
-      <UserForm/>
-      <UserForm2/>
+    <div style={{ backgroundColor: "yellow", padding: 10 }}>
+      <SubjectContext.Provider value={subject}>
+        <select  onChange={(e)=>setSubject(e.target.value)}>
+          <option value="">Select Subject</option>
+          <option value="Maths">Maths</option>
+          <option value="English">English</option>
+          <option value="Physics">Physics</option>
+        </select>
+        <h2>Context API</h2>
+        <College />
+      </SubjectContext.Provider>
     </div>
-  )
-}
+  );
+};
 
-function UserForm(){
-  const name = useId()
-  const pass = useId()
-  const skills = useId()
-  return (
-    <>
-      <form action="">
-        <label htmlFor={name}>Enter Name </label>
-        <input type="text" id={name}  /><br /><br />
-        <label htmlFor={pass}>Enter Password </label>
-        <input type="text" id={pass}  /><br /><br />
-        <label htmlFor={skills}>Skills</label>
-        <input type="checkbox" id={skills}  />
-      </form>
-      <hr />
-    </>
-  )
-}
-
-function UserForm2(){
-  const user = useId()
-  return (
-    <>
-      <form action="">
-        <label htmlFor={user+"name"}>Enter Name </label>
-        <input type="text" id={user+"name"}  /><br /><br />
-        <label htmlFor={user+"pass"}>Enter Password </label>
-        <input type="text" id={user+"pass"}  /><br /><br />
-        <label htmlFor={user+"skills"}>Skills</label>
-        <input type="checkbox" id={user+"skills"}  />
-      </form>
-      <hr />
-    </>
-  )
-}
-export default App
+export default App;
