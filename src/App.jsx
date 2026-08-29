@@ -1,29 +1,36 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useActionState } from 'react'
 
 const App = () => {
-  const [data, setData] = useState({
-    name:"yash",
-    address:{
-      city:"Angul",
-      country:"India"
+  const HandleForm=async(prev,formData)=>{
+    const name = formData.get('name')
+    const pass = formData.get('pass')
+    await new Promise(res=>setTimeout(res,3000))
+    // console.log("Called",name,pass);
+    if(name && pass){
+      return {msg:"Data submitted!!!",name,pass}
     }
-  });
-
-  const onName=(val)=>{
-    data.name = val;
-    setData({...data})
+    else{
+      return {Error:"Unable to submit...",name,pass}
+    }
   }
-  const onCity=(val)=>{
-    setData({...data,address:{...data.address,city:val}})
-    console.log(data)
-  }
+  const [data,action,pending] = useActionState(HandleForm,undefined);
+  
   return (
     <div>
-      <input type="text" onChange={(e)=>onName(e.target.value)}/>
-      <input type="text" onChange={(e)=>onCity(e.target.value)}/>
-      <h2>Name:{data.name}</h2>
-      <h2>City:{data.address.city}</h2>
-      <h2>Country:{data.address.country}</h2>
+      <form action={action}>
+        <input type="text" name='name' placeholder='Enter name' /><br /><br />
+        <input type="password" name='pass' placeholder='Enter password' /><br /><br />
+        <button disabled={pending}>Submit</button>
+      </form>
+      {
+        data?.Error && <span style={{color:"red"}}>{data?.Error}</span>
+      }
+      {
+        data?.msg && <span style={{color:"green"}}>{data?.msg}</span>
+      }
+      <h3>Name:{data?.name}</h3>
+      <h3>Password:{data?.pass}</h3>
     </div>
   )
 }
