@@ -1,0 +1,23 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.header{
+    background: lightcyan;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+.header ul{
+    display: flex;
+    width: 250px;
+    justify-content: space-evenly;
+    list-style: none;
+}
+ img{
+    width: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}

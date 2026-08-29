@@ -3,6 +3,7 @@ import { Route, Routes } from 'react-router'
 import About from './About'
 import Contact from './Contact'
 import Navbar from './Navbar'
+import Page404 from './Page404'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
           <Route path='/' element={<h1>Home Page</h1>} />
           <Route path='/about' element={<About/>} />
           <Route path='/contact' element={<Contact/>} />
+          <Route path='/*' element={<Page404/>} />
         </Routes>
     </div>
   )
