@@ -1,38 +1,47 @@
-import React from 'react'
-import { useActionState } from 'react'
+import React, { useId } from 'react'
 
 const App = () => {
-  const HandleForm=async(prev,formData)=>{
-    const name = formData.get('name')
-    const pass = formData.get('pass')
-    await new Promise(res=>setTimeout(res,3000))
-    // console.log("Called",name,pass);
-    if(name && pass){
-      return {msg:"Data submitted!!!",name,pass}
-    }
-    else{
-      return {Error:"Unable to submit...",name,pass}
-    }
-  }
-  const [data,action,pending] = useActionState(HandleForm,undefined);
-  
   return (
     <div>
-      <form action={action}>
-        <input type="text" name='name' placeholder='Enter name' /><br /><br />
-        <input type="password" name='pass' placeholder='Enter password' /><br /><br />
-        <button disabled={pending}>Submit</button>
-      </form>
-      {
-        data?.Error && <span style={{color:"red"}}>{data?.Error}</span>
-      }
-      {
-        data?.msg && <span style={{color:"green"}}>{data?.msg}</span>
-      }
-      <h3>Name:{data?.name}</h3>
-      <h3>Password:{data?.pass}</h3>
+      <UserForm/>
+      <UserForm2/>
     </div>
   )
 }
 
+function UserForm(){
+  const name = useId()
+  const pass = useId()
+  const skills = useId()
+  return (
+    <>
+      <form action="">
+        <label htmlFor={name}>Enter Name </label>
+        <input type="text" id={name}  /><br /><br />
+        <label htmlFor={pass}>Enter Password </label>
+        <input type="text" id={pass}  /><br /><br />
+        <label htmlFor={skills}>Skills</label>
+        <input type="checkbox" id={skills}  />
+      </form>
+      <hr />
+    </>
+  )
+}
+
+function UserForm2(){
+  const user = useId()
+  return (
+    <>
+      <form action="">
+        <label htmlFor={user+"name"}>Enter Name </label>
+        <input type="text" id={user+"name"}  /><br /><br />
+        <label htmlFor={user+"pass"}>Enter Password </label>
+        <input type="text" id={user+"pass"}  /><br /><br />
+        <label htmlFor={user+"skills"}>Skills</label>
+        <input type="checkbox" id={user+"skills"}  />
+      </form>
+      <hr />
+    </>
+  )
+}
 export default App
