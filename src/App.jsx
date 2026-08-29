@@ -1,29 +1,33 @@
-import React from "react";
-import { Route, Routes } from "react-router";
-import About from "./About";
-import Contact from "./Contact";
-import Navbar from "./Navbar";
-import Page404 from "./Page404";
-import College from "./College";
-
+import React, {  useEffect, useState } from "react";
+import './App.css'
 const App = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    GetUsersData();
+  }, []);
+
+  const GetUsersData = async () => {
+    const URL = "https://dummyjson.com/users";
+    let response = await fetch(URL);
+    response = await response.json();
+    setUsers(response.users);
+  };
+
   return (
     <div>
-      {/* <Navbar/> */}
-      <Routes>
-        <Route element={<Navbar />}>
-          <Route path="/" element={<h1>Home Page</h1>} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-        </Route>
-
-        <Route path="/college" element={<College />}>
-          <Route index element={<h1>Student Page</h1>} />
-          <Route path="department" element={<h1>Dept. Page</h1>} />
-          <Route path="details" element={<h1>Details Page</h1>} />
-        </Route>
-        <Route path="/*" element={<Page404 />} />
-      </Routes>
+      <ul className="Head">
+        <li>First Name</li>
+        <li>Last Name</li>
+        <li>Age</li>
+      </ul>
+      {users.map((user, index) => (
+        <ul key={index}>
+          <li>{user.firstName}</li>
+          <li>{user.lastName}</li>
+          <li>{user.age}</li>
+        </ul>
+      ))}
     </div>
   );
 };
