@@ -13,3 +13,9 @@ ul{
   font-size: 20px;
   font-weight: 700;
 }
+.error{
+  color: red;
+}
+.error:focus{
+  outline: 2px solid red;
+}
