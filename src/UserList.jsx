@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router";
 const UserList = () => {
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,14 +16,16 @@ const UserList = () => {
     setLoading(false);
   };
 
-  const DeleteData=async (id)=>{
-    let response = await fetch(URL+"/"+id,{method:'delete'});
+  const DeleteData = async (id) => {
+    let response = await fetch(URL + "/" + id, { method: "delete" });
     response = await response.json();
-    if(response){
-        alert("record deleted");
-        GetUsersData();
+    if (response) {
+      alert("record deleted");
+      GetUsersData();
     }
-  }
+  };
+
+  
 
   return (
     <div>
@@ -33,14 +36,21 @@ const UserList = () => {
         <li>Actions</li>
       </ul>
 
-      {!loading?users.map((user, index) => (
-        <ul key={index}>
-          <li>{user.name}</li>
-          <li>{user.email}</li>
-          <li>{user.age}</li>
-          <li><button onClick={()=>DeleteData(user.id)}>Delete</button></li>
-        </ul>
-      )):<h1>Loading...</h1>}
+      {!loading ? (
+        users.map((user, index) => (
+          <ul key={index}>
+            <li>{user.name}</li>
+            <li>{user.email}</li>
+            <li>{user.age}</li>
+            <li>
+              <button onClick={() => DeleteData(user.id)}>Delete</button>
+              <Link to={"/edituser/"+user.id}><button>Edit</button></Link>
+            </li>
+          </ul>
+        ))
+      ) : (
+        <h1>Loading...</h1>
+      )}
     </div>
   );
 };
