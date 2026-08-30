@@ -5,15 +5,24 @@ const UserList = () => {
   useEffect(() => {
     GetUsersData();
   }, []);
+  const URL = "http://localhost:3000/Users";
 
   const GetUsersData = async () => {
     setLoading(true);
-    const URL = "http://localhost:3000/Users";
     let response = await fetch(URL);
     response = await response.json();
     setUsers(response);
     setLoading(false);
   };
+
+  const DeleteData=async (id)=>{
+    let response = await fetch(URL+"/"+id,{method:'delete'});
+    response = await response.json();
+    if(response){
+        alert("record deleted");
+        GetUsersData();
+    }
+  }
 
   return (
     <div>
@@ -21,6 +30,7 @@ const UserList = () => {
         <li>Name</li>
         <li>Email</li>
         <li>Age</li>
+        <li>Actions</li>
       </ul>
 
       {!loading?users.map((user, index) => (
@@ -28,6 +38,7 @@ const UserList = () => {
           <li>{user.name}</li>
           <li>{user.email}</li>
           <li>{user.age}</li>
+          <li><button onClick={()=>DeleteData(user.id)}>Delete</button></li>
         </ul>
       )):<h1>Loading...</h1>}
     </div>
