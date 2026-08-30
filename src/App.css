@@ -7,6 +7,7 @@ ul{
   display: flex;
   justify-content: space-evenly;
   border: 1px solid #000;
+  padding: 20px;
 }
 .Head{
   font-size: 20px;
